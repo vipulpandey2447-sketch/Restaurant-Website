@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fun & Food Restaurant | Book a Table</title>
+  <title>Book a Table | SS Restaurant</title>
+  <meta name="description" content="Book a table at SS Restaurant Delhi - Reserve your spot for a wonderful dining experience">
   <link rel="stylesheet" href="styles.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-
 <body>
 
   <!-- Navbar -->
   <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand fw-bold" href="#">
-          <img src="./assets/SNS Restaurant logo.png" alt="Fun & Food Restaurant" width="40" class="me-2">
-          SS Restaurant
+        <a class="navbar-brand d-flex align-items-center" href="./index.html">
+          <img src="./assets/SNS Restaurant logo.png" alt="SS Restaurant" width="45" class="me-2 rounded-circle">
+          <span class="fw-bold">SS Restaurant</span>
         </a>
         <div class="d-lg-none text-white small">
-          <span>Email: vipulpandey2447@gmail.com | Call: +91 6284662447</span>
+          <span><i class="fas fa-envelope"></i> vipulpandey2447@gmail.com | <i class="fas fa-phone"></i> +91 6284662447</span>
         </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span class="navbar-toggler-icon"></span>
@@ -33,65 +33,189 @@
             <li class="nav-item"><a href="./menu.html" class="nav-link">Menu</a></li>
             <li class="nav-item"><a href="./events.html" class="nav-link">Events</a></li>
             <li class="nav-item"><a href="./contact.html" class="nav-link">Contact</a></li>
-            <li class="nav-item"><a href="./cart.html" class="nav-link">Cart 🛒 (<span id="cart-count">0</span>)</a>
-            </li>
+            <li class="nav-item"><a href="./cart.html" class="nav-link position-relative">
+              <i class="fas fa-shopping-cart"></i> Cart
+              <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+            </a></li>
           </ul>
         </div>
       </div>
     </nav>
   </header>
 
-  <!-- Book a Table Section -->
-  <section id="book-table" class="book-table-section py-5 mt-5">
-    <div class="container">
-      <h2 class="text-center mb-4 text-white">Book a Table</h2>
-      <form id="reservationForm" action="https://formsubmit.co/aaasingh1010@gmail.com" method="POST"
-        class="reservation-form mx-auto p-4 rounded shadow-lg">
-        <!-- Hidden inputs for configuration -->
-        <input type="hidden" name="_next" value="https://ss-restaurant.com/book_table.html">
-        <input type="hidden" name="_subject" value="New Table Reservation from SS Restaurant">
-        <input type="hidden" name="_captcha" value="false">
+  <!-- Page Header -->
+  <section class="book-table-section py-5 mt-5">
+    <div class="container text-center text-white">
+      <h1 class="fw-bold display-4"><i class="fas fa-calendar-check me-2"></i>Book a Table</h1>
+      <p class="lead">Reserve your spot for an unforgettable dining experience!</p>
+    </div>
+  </section>
 
-        <div class="row g-3">
-          <div class="col-md-6">
-            <input type="text" name="name" id="name" class="form-control" placeholder="Full Name" required>
-          </div>
-          <div class="col-md-6">
-            <input type="tel" name="phone" id="phone" class="form-control" placeholder="Phone Number" required
-              pattern="[0-9]{10}">
-          </div>
-          <div class="col-md-6">
-            <input type="email" name="email" id="email" class="form-control" placeholder="Email Address" required>
-          </div>
-          <div class="col-md-3">
-            <input type="date" name="date" id="date" class="form-control" required>
-          </div>
-          <div class="col-md-3">
-            <input type="time" name="time" id="time" class="form-control" required>
-          </div>
-          <div class="col-md-6">
-            <input type="number" name="guests" id="guests" class="form-control" placeholder="Number of Guests" min="1"
-              required>
-          </div>
-          <div class="col-md-12">
-            <textarea name="requests" id="requests" class="form-control" rows="3"
-              placeholder="Special Requests (optional)"></textarea>
+  <!-- Booking Form Section -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="card border-0 shadow-lg">
+            <div class="card-body p-5">
+              <div class="text-center mb-4">
+                <i class="fas fa-utensils fa-3x text-primary"></i>
+                <h2 class="fw-bold mt-3">Table Reservation</h2>
+                <p class="text-muted">Fill in the details below to reserve your table</p>
+              </div>
+              
+              <form id="reservationForm" action="https://formsubmit.co/vipulpandey2447@gmail.com" method="POST" class="reservation-form">
+                <input type="hidden" name="_next" value="https://ss-restaurant.com/book_table.html">
+                <input type="hidden" name="_subject" value="New Table Reservation from SS Restaurant">
+                <input type="hidden" name="_captcha" value="false">
+
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label fw-bold">Full Name *</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><i class="fas fa-user"></i></span>
+                      <input type="text" name="name" id="name" class="form-control" placeholder="Enter your full name" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label fw-bold">Phone Number *</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                      <input type="tel" name="phone" id="phone" class="form-control" placeholder="Enter phone number" required pattern="[0-9]{10}">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label fw-bold">Email Address *</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                      <input type="email" name="email" id="email" class="form-control" placeholder="Enter email address" required>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <label class="form-label fw-bold">Date *</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                      <input type="date" name="date" id="date" class="form-control" required>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <label class="form-label fw-bold">Time *</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><i class="fas fa-clock"></i></span>
+                      <input type="time" name="time" id="time" class="form-control" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label fw-bold">Number of Guests *</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><i class="fas fa-users"></i></span>
+                      <input type="number" name="guests" id="guests" class="form-control" placeholder="Number of guests" min="1" max="20" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label fw-bold">Occasion</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><i class="fas fa-birthday-cake"></i></span>
+                      <select name="occasion" class="form-select">
+                        <option value="">Select Occasion (Optional)</option>
+                        <option value="Birthday">Birthday</option>
+                        <option value="Anniversary">Anniversary</option>
+                        <option value="Business Dinner">Business Dinner</option>
+                        <option value="Family Gathering">Family Gathering</option>
+                        <option value="Date Night">Date Night</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <label class="form-label fw-bold">Special Requests</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><i class="fas fa-comment"></i></span>
+                      <textarea name="requests" id="requests" class="form-control" rows="3" placeholder="Any special requests or dietary requirements?"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-center mt-4">
+                  <button type="submit" class="btn btn-success btn-lg px-5 fw-bold">
+                    <i class="fas fa-check-circle me-2"></i>Confirm Reservation
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
-        <div class="text-center mt-4">
-          <button type="submit" class="btn btn-warning px-5">Reserve Now</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Info Cards -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card border-0 shadow h-100 text-center p-4">
+            <i class="fas fa-clock fa-2x text-primary mb-3"></i>
+            <h5>Opening Hours</h5>
+            <p class="mb-0">Mon - Sun: 10:00 AM - 11:00 PM</p>
+          </div>
         </div>
-      </form>
+        <div class="col-md-4">
+          <div class="card border-0 shadow h-100 text-center p-4">
+            <i class="fas fa-phone fa-2x text-success mb-3"></i>
+            <h5>Call Us</h5>
+            <p class="mb-0">+91 6284662447</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card border-0 shadow h-100 text-center p-4">
+            <i class="fas fa-envelope fa-2x text-warning mb-3"></i>
+            <h5>Email Us</h5>
+            <p class="mb-0">vipulpandey2447@gmail.com</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Terms -->
+  <section class="py-4">
+    <div class="container">
+      <div class="alert alert-info">
+        <i class="fas fa-info-circle me-2"></i>
+        <strong>Note:</strong> For parties of more than 20 guests or special events, please call us directly at +91 6284662447.
+      </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-dark text-white text-center py-3 mt-auto location-bar">
-    <p>📍 Visit us: 123 SS Street, Delhi | Open 10 AM - 11 PM</p>
-    <p>&copy; 2025 Fun & Food Restaurant | Follow us on
-      <a href="#" class="text-info">Instagram</a> &
-      <a href="#" class="text-info">Facebook</a>
-    </p>
+  <footer class="bg-dark text-white py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <h5>SS Restaurant</h5>
+          <p class="small text-muted">Taste that brings happiness! Best North Indian cuisine in Delhi.</p>
+        </div>
+        <div class="col-md-4 mb-3">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="./index.html" class="text-muted text-decoration-none">Home</a></li>
+            <li><a href="./menu.html" class="text-muted text-decoration-none">Menu</a></li>
+            <li><a href="./book_table.html" class="text-muted text-decoration-none">Book Table</a></li>
+            <li><a href="./contact.html" class="text-muted text-decoration-none">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5>Follow Us</h5>
+          <div class="fs-4">
+            <a href="#" class="text-info me-3"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-primary me-3"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="text-success"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <p class="text-center mb-0">&copy; 2026 SS Restaurant. All Rights Reserved.</p>
+    </div>
   </footer>
 
   <script src="script.js"></script>

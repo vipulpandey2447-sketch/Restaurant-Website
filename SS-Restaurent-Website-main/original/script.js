@@ -1,151 +1,129 @@
-// ---------------- HERO SLIDESHOW ----------------
-let slideIndex = 0;
-const slides = document.querySelectorAll(".slide");
+// ===========================
+// CART SYSTEM USING LOCAL STORAGE
+// ===========================
 
-if (slides.length > 0) {
-  function showSlides() {
-    slides.forEach(slide => slide.classList.remove("active"));
-    slideIndex = (slideIndex + 1) % slides.length;
-    slides[slideIndex].classList.add("active");
-  }
-  setInterval(showSlides, 4000);
-}
-
-// ---------------- CART SYSTEM ----------------
-
-// Retrieve cart from localStorage or initialize an empty one
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// Get cart elements (only if they exist on this page)
-const cartItemsContainer = document.getElementById("cart-items");
-const cartCount = document.getElementById("cart-count");
-const totalPriceEl = document.getElementById("total-price");
-
-// Function to update cart count in navbar
 function updateCartCount() {
-  if (cartCount) cartCount.textContent = cart.length;
+  const count = cart.reduce((t, i) => t + i.quantity, 0);
+  document.querySelectorAll("#cart-count").forEach(el => el.textContent = count);
 }
+updateCartCount();
 
-// Function to save cart to localStorage
 function saveCart() {
   localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-// Function to render cart (for pages that have a cart section)
-function renderCart() {
-  if (!cartItemsContainer) return;
-  cartItemsContainer.innerHTML = "";
-  let total = 0;
-
-  cart.forEach((item, index) => {
-    total += item.price;
-    const div = document.createElement("div");
-    div.classList.add("cart-item", "d-flex", "justify-content-between", "align-items-center", "border-bottom", "py-2");
-    div.innerHTML = `
-      <span>${item.name}</span>
-      <span>₹${item.price}</span>
-      <button class="btn btn-sm btn-danger" onclick="removeItem(${index})">X</button>
-    `;
-    cartItemsContainer.appendChild(div);
-  });
-
-  if (totalPriceEl) totalPriceEl.textContent = total;
-  updateCartCount();
-}
-
-// Function to remove item
-function removeItem(index) {
-  cart.splice(index, 1);
-  saveCart();
-  renderCart();
-}
-
-// Add to cart button handler
+// ===========================
+// ADD TO CART
+// ===========================
 document.querySelectorAll(".add-to-cart").forEach(btn => {
-  btn.addEventListener("click", e => {
-    const name = e.target.dataset.name;
-    const price = parseInt(e.target.dataset.price);
+  btn.addEventListener("click", () => {
+    const name = btn.dataset.name;
+    const price = Number(btn.dataset.price);
 
-    cart.push({ name, price });
+    const existing = cart.find(i => i.name === name);
+
+    if (existing) existing.quantity++;
+    else cart.push({ name, price, quantity: 1 });
+
     saveCart();
     updateCartCount();
-
-    // Optional toast/alert
-    alert(`${name} added to cart!`);
+    displayCartItems();
   });
 });
 
-// Clear cart (only if button exists)
-const clearCartBtn = document.getElementById("clear-cart");
-if (clearCartBtn) {
-  clearCartBtn.addEventListener("click", () => {
-    cart = [];
-    saveCart();
-    renderCart();
+// ===========================
+// DISPLAY CART
+// ===========================
+function displayCartItems() {
+  const div = document.getElementById("cart-items");
+  if (!div) return;
+  div.innerHTML = "";
+
+  if (cart.length === 0) {
+    div.innerHTML = `<p class='text-center text-muted'>Your Cart is Empty</p>`;
+    document.getElementById("total-price").textContent = 0;
+    document.getElementById("gst-amount").textContent = 0;
+    document.getElementById("grand-total").textContent = 0;
+    return;
+  }
+
+  let total = 0;
+
+  cart.forEach((item, index) => {
+    const row = document.createElement("div");
+    row.className = "cart-item";
+
+    row.innerHTML = `
+      <div>
+        <strong>${item.name}</strong><br>
+        <small>₹${item.price}</small>
+      </div>
+
+      <div class="qty-box">
+        <button class="qty-btn minus" data-i="${index}">−</button>
+        <strong>${item.quantity}</strong>
+        <button class="qty-btn plus" data-i="${index}">+</button>
+      </div>
+
+      <div><strong>₹${item.price * item.quantity}</strong></div>
+    `;
+
+    div.appendChild(row);
+    total += item.price * item.quantity;
+  });
+
+  const gst = (total * 0.05).toFixed(2);
+  const grand = (total + Number(gst)).toFixed(2);
+
+  document.getElementById("total-price").textContent = total;
+  document.getElementById("gst-amount").textContent = gst;
+  document.getElementById("grand-total").textContent = grand;
+
+  addQtyEvents();
+}
+
+// ===========================
+// QTY BUTTON LOGIC
+// ===========================
+function addQtyEvents() {
+  document.querySelectorAll(".plus").forEach(btn => {
+    btn.onclick = () => {
+      const i = btn.dataset.i;
+      cart[i].quantity++;
+      saveCart();
+      updateCartCount();
+      displayCartItems();
+    };
+  });
+
+  document.querySelectorAll(".minus").forEach(btn => {
+    btn.onclick = () => {
+      const i = btn.dataset.i;
+      if (cart[i].quantity > 1) cart[i].quantity--;
+      else cart.splice(i, 1);
+
+      saveCart();
+      updateCartCount();
+      displayCartItems();
+    };
   });
 }
 
-// On page load
-updateCartCount();
-renderCart();
+displayCartItems();
 
-// // ---------------- RESERVATION FORM ----------------
-// const reservationForm = document.getElementById("reservationForm");
-// if (reservationForm) {
-//   reservationForm.addEventListener("submit", function (e) {
-//     e.preventDefault();
-
-//     const name = document.getElementById("name").value.trim();
-//     const phone = document.getElementById("phone").value.trim();
-//     const email = document.getElementById("email").value.trim();
-//     const date = document.getElementById("date").value;
-//     const time = document.getElementById("time").value;
-//     const guests = document.getElementById("guests").value;
-//     const messageEl = document.getElementById("form-message");
-
-//     if (!name || !phone || !email || !date || !time || !guests) {
-//       messageEl.textContent = "⚠️ Please fill in all required fields.";
-//       messageEl.style.color = "orange";
-//       return;
-//     }
-
-//     messageEl.textContent = "✅ Your table has been successfully booked!";
-//     messageEl.style.color = "lightgreen";
-
-//     this.reset();
-//   });
-// }
-
-
-
-
-
-
-
-
-
-
-// ---------------- RESERVATION FORM ----------------
-const reservationForm = document.getElementById("reservationForm");
-if (reservationForm) {
-  reservationForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-    const name = document.getElementById("name").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const date = document.getElementById("date").value;
-    const time = document.getElementById("time").value;
-    const guests = document.getElementById("guests").value;
-    const messageEl = document.getElementById("form-message");
-
-    if (!name || !phone || !email || !date || !time || !guests) {
-      messageEl.textContent = "⚠️ Please fill in all required fields.";
-      messageEl.style.color = "orange";
-      return;
+// ===========================
+// CLEAR CART
+// ===========================
+const clearBtn = document.getElementById("clear-cart");
+if (clearBtn) {
+  clearBtn.onclick = () => {
+    if (confirm("Clear Entire Cart?")) {
+      cart = [];
+      localStorage.removeItem("cart");
+      updateCartCount();
+      displayCartItems();
     }
-
-    messageEl.textContent = "✅ Your table has been successfully booked!";
-    messageEl.style.color = "lightgreen";
-    this.reset();
-  });
+  };
 }

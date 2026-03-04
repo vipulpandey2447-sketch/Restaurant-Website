@@ -6,7 +6,6 @@
   <title>SS Restaurant</title>
   <link rel="stylesheet" href="styles.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
 <body>
@@ -15,7 +14,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
         <a class="navbar-brand" href="#">
-          <img src="logo.png" alt="SS Restaurant" width="40" class="me-2">
+          <img src="./assets/SNS Restaurant logo.png" alt="SS Restaurant" width="40" class="me-2">
           SS Restaurant
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -25,52 +24,37 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item"><a href="./index.html" class="nav-link">Home</a></li>
-            <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+            <li class="nav-item"><a href="./about.html" class="nav-link">About</a></li>
             <li class="nav-item"><a href="./menu.html" class="nav-link">Menu</a></li>
-            <li class="nav-item"><a href="#gallery" class="nav-link">Gallery</a></li>
+            <!-- <li class="nav-item"><a href="#gallery" class="nav-link">Gallery</a></li> -->
             <li class="nav-item"><a href="./events.html" class="nav-link">Events</a></li>
-            <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
-            <li class="nav-item"><a href="#cart" class="nav-link">Cart 🛒 (<span id="cart-count">0</span>)</a></li>
+            <li class="nav-item"><a href="./contact.html" class="nav-link">Contact</a></li>
+            <li class="nav-item"><a href="./cart.html" class="nav-link">Cart 🛒 (<span id="cart-count">0</span>)</a></li>
           </ul>
         </div>
       </div>
     </nav>
   </header>
 
+
   <!-- Hero Section with Sliding Background -->
   <section id="home" class="hero-section text-center text-white">
     <div class="hero-slideshow">
-      <div class="slide active" style="background-image: url('./assets/hero1.jpg');"></div>
-      <div class="slide" style="background-image: url('./assets/hero2.jpg');"></div>
-      <div class="slide" style="background-image: url('./assets/hero3.jpg');"></div>
+      <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1551218808-94e220e084d2');"></div>
+      <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836');"></div>
+      <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1528605248644-14dd04022da1');"></div>
     </div>
 
     <div class="hero-overlay">
       <h1 class="display-4 fw-bold">Welcome to SS Restaurant</h1>
       <p class="lead">"Taste that brings happiness!"</p>
       <div class="mt-4">
-        <a href="#menu" class="btn btn-primary m-2">View Menu</a>
+        <a href="./menu.html" class="btn btn-primary m-2">View Menu</a>
         <a href="./book_table.html" class="btn btn-success m-2">Book a Table</a>
       </div>
     </div>
   </section>
 
-
-  <!-- About -->
-
-  <section id="about" class="container py-5">
-    <h2 class="text-center mb-4">About Us</h2>
-    <p class="text-center">
-      Welcome to SS Restaurant, a perfect blend of taste, tradition, and hospitality.
-Established in 2020, SS Restaurant was born from a simple dream — to bring people closer through the joy of authentic, flavorful, and freshly prepared food.
-
-At SS Restaurant, we believe that a great meal is more than just food — it’s an experience. Our chefs craft every dish with passion, using handpicked ingredients, traditional recipes, and a touch of modern creativity to deliver flavors that stay in your heart.
-
-From North Indian curries to continental favorites, every plate we serve tells a story of dedication and taste. Whether you’re joining us for a family dinner, a romantic date, or a casual lunch with friends, our cozy interiors, warm lighting, and friendly staff make every visit special.
-
-We also take pride in our chef’s specials, live kitchen experience, and seasonal menus designed to surprise your palate. For us, your comfort and satisfaction come first — that’s why we ensure freshness, hygiene, and quality in everything we do.
-    </p>
-  </section>
 
   <!-- Menu -->
   <section id="menu" class="container py-5">
@@ -102,7 +86,6 @@ We also take pride in our chef’s specials, live kitchen experience, and season
 
 
   <!-- Events & Offers Section -->
-<!-- Events & Offers Section -->
 <section id="events" class="py-5 bg-light">
   <div class="container">
     <h2 class="text-center mb-5 fw-bold">🎉 Events & Special Offers</h2>
@@ -160,31 +143,60 @@ We also take pride in our chef’s specials, live kitchen experience, and season
 </section>
 
 
-  <!-- Cart -->
+
+ 
+
+
+  <!-- Cart
   <section id="cart" class="container py-5">
     <h2 class="text-center mb-4">Your Cart</h2>
     <div id="cart-items"></div>
     <h4 class="text-end mt-3">Total: ₹<span id="total-price">0</span></h4>
     <button id="clear-cart" class="btn btn-danger mt-3">Clear Cart</button>
-  </section>
+  </section> -->
 
-  <!-- Contact -->
-  <section id="contact" class="container py-5">
-    <h2 class="text-center mb-4">Contact Us</h2>
-    <p class="text-center">📍 123 SS Street, Delhi | 📞 +91 6284662447 | ✉️ ssrestaurant@gmail.com</p>
-    <div class="map text-center">
-      <iframe src="https://maps.google.com/maps?q=Delhi&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="300"></iframe>
-    </div>
-  </section>
+  
 
   <!-- Location -->
-  <section class="location-bar text-center text-white py-3">
-    <p>📍 Visit us: 123 SS Street, Delhi | Open 10 AM - 11 PM</p>
-  </section>
+  <!-- Location Section -->
+<section id="location" class="py-5">
+  <h2 style=" text-align: center;
+    margin: 50px 0 30px 0; 
+    font-weight: 700;
+    color: #2c3e50;">Contact Us</h2>
+
+  <div class="container">
+    <div class="row align-items-center g-4">
+      
+      <!-- Left Side: Address Box -->
+      <div class="col-md-6">
+        <div class="address-box p-4 rounded shadow">
+          <h3 class="fw-bold text-dark mb-3">📍 Visit SS Restaurant</h3>
+          <p><strong>Address:</strong> 123 SS Street, Near City Mall, New Delhi - 110001</p>
+          <p><strong>Phone:</strong> +91 6284662447</p>
+          <p><strong>Email:</strong> vipulpandey2447@gmail.com</p>
+          <p><strong>Opening Hours:</strong> 10:00 AM – 11:00 PM (Mon–Sun)</p>
+          <p><strong>Special Note:</strong> Free parking available. Perfect spot for family dinners and celebrations!</p>
+        </div>
+      </div>
+
+      <!-- Right Side: Embedded Map -->
+      <div class="col-md-6">
+        <div class="map-container shadow">
+          <iframe 
+            src="https://maps.google.com/maps?q=Delhi&t=&z=13&ie=UTF8&iwloc=&output=embed" 
+            width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
   <!-- Footer -->
   <footer class="bg-dark text-white text-center py-3">
-    <p>&copy; 2025 SS Restaurant | Follow us on 
+    <p>&copy; 2026 SS Restaurant | Follow us on 
       <a href="#" class="text-info">Instagram</a> & 
       <a href="#" class="text-info">Facebook</a></p>
   </footer>
